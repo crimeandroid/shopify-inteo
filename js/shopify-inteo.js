@@ -16,7 +16,6 @@
 
 const SCRIPT_NAME = 'shopify-inteo';
 const SCRIPT_TAG_NAME = 'script';
-// const SERVER_URL = 'https://forms.gle/XrJf1Nqdk3UeS9qQ9';
 const SERVER_URL = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSd91wQ49vVgqxps07pXayOlXjwJMPo29mynT1RNrgXauFaxlg/formResponse';
 const SERVER_ARG_FIRST = 'entry.1363469278';
 const PARAMETER_UID_NAME = 'uid';
@@ -40,14 +39,17 @@ const UID = (function () {
 })();
 
 function loadDoc() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status === 200) {
-            document.getElementById("demo").innerHTML = this.responseText;
-        }
-    };
-    xhttp.open("POST", SERVER_URL, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    // xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
-    xhttp.send(SERVER_ARG_FIRST + '=' + Date.now());
+    try {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                document.getElementById("demo").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("POST", SERVER_URL, true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send(SERVER_ARG_FIRST + '=' + Date.now());
+    } catch (e) {
+        // console(e);
+    }
 }
